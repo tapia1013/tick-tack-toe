@@ -1,7 +1,14 @@
-function openPlayerConfig() {
+function openPlayerConfig(e) {
+  // grab custom data-<set> attr we added in html, {poplated with data}
+  const selectedPlayerId = +e.target.dataset.playerid; // +'1' -> 1
+
+  editedPlayer = selectedPlayerId;
+
   playerConfigOverlayElement.style.display = "block";
   backdropElement.style.display = "block";
 }
+
+
 
 function closePlayerConfig() {
   playerConfigOverlayElement.style.display = "none";
@@ -10,7 +17,12 @@ function closePlayerConfig() {
   formElement.firstElementChild.classList.remove('error');
 
   errorsOutputElement.textContent = '';
+
+  // reset input if confirm btn clicked or modal is closed
+  formElement.firstElementChild.lastElementChild.value = '';
 }
+
+
 
 function savePlayerConfig(e) {
   e.preventDefault();
@@ -30,5 +42,13 @@ function savePlayerConfig(e) {
     return;
   }
 
+  // player-{1}-data player-{2}-data
+  const updatedPlayerDataElement = document.getElementById('player-' + editedPlayer + '-data')
+  // update player name, returns []
+  updatedPlayerDataElement.children[1].textContent = enteredPlayername;
 
+  players[editedPlayer - 1].name = enteredPlayername;
+
+  // close modal if confirm btn clicked
+  closePlayerConfig();
 }
