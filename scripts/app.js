@@ -4,9 +4,11 @@ const gameData = [
   [0, 0, 0]
 ];
 
+
 let editedPlayer = 0;
 let activePlayer = 0;
 let currentRound = 1;
+let gameIsOver = false;
 
 
 const players = [
@@ -26,7 +28,8 @@ const backdropElement = document.getElementById('backdrop');
 const formElement = document.querySelector('form');
 const errorsOutputElement = document.getElementById('config-errors');
 const gameAreaElement = document.getElementById('active-game');
-const activePlayerNameElement = document.getElementById('active-player-name')
+const activePlayerNameElement = document.getElementById('active-player-name');
+const gameOverElement = document.getElementById('game-over');
 
 
 const editPlayer1BtnElement = document.getElementById('edit-player-1-btn');
